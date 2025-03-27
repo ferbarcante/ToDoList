@@ -1,3 +1,5 @@
+using ToDoList.Routes;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,9 +16,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// como um endpoint de uma minimal api funciona, rota e handler
-app.MapGet("tarefa", () => "Olá");
-// post, put, delete, patch...
+app.TarefaRoutes();
 
 app.UseHttpsRedirection();
 app.Run();
