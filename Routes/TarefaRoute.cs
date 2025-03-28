@@ -1,5 +1,6 @@
 using ToDoList.Data;
 using ToDoList.Models;
+using ToDoList.Services;
 
 namespace ToDoList.Routes;
 
@@ -11,14 +12,17 @@ public static class TarefaRoute
         var route = app.MapGroup("tarefa");
 
         route.MapPost("",
-            async (TarefaRequest req, TarefaContext context) =>
+            async (TarefaRequest req, TarefaService service) =>
             {
-                var tarefa = new Tarefa(req.titulo);
-                await context.AddAsync(tarefa);
-                await context.SaveChangesAsync();
+                var criarTarefa = await service.CriarTarefa(req.titulo);
             });
         
-        route.MapGet("", () => );
-        route.MapDelete("", () => );
+        route.MapGet("", 
+            async (TarefaContext context) =>
+            {
+                
+            });
+       
+        // route.MapDelete("", () => );
     }
 }
