@@ -15,6 +15,7 @@ public static class TarefaRoute
             async (TarefaRequest req, TarefaService service) =>
             {
                 var criarTarefa = await service.CriarTarefa(req.titulo);
+                return Results.Ok(criarTarefa);
             });
         
         route.MapGet("", 
@@ -23,7 +24,16 @@ public static class TarefaRoute
                 var buscarTarefas = await service.BuscarTarefas();
                 return Results.Ok(buscarTarefas);
             });
-       
-        // route.MapDelete("", () => );
+
+        route.MapPut("{id:guid}",
+            async (TarefaService service, TarefaRequest req, Guid id) =>
+            {
+                var atualizarTarefa = await service.AtualizarTarefa(id, req);
+                
+                if (atualizarTarefa == null)
+                    return Results.NotFound();
+                
+                return atualizarTarefa;
+            });
     }
 }

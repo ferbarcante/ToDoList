@@ -32,4 +32,14 @@ public class TarefaService
         var tarefa = await _context.Tarefas.ToListAsync();
         return tarefa;
     }
+
+    public async Task<Tarefa> AtualizarTarefa(Guid id, TarefaRequest req)
+    {
+        var tarefa = await _context.Tarefas.FindAsync(id);
+        
+        tarefa.MudarTitulo(req.titulo);
+        await _context.SaveChangesAsync();
+        
+        return tarefa;
+    }
 }
