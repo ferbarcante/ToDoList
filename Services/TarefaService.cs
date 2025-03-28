@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using ToDoList.Data;
 using ToDoList.Models;
 
@@ -23,6 +24,12 @@ public class TarefaService
         await _context.AddAsync(tarefa);
         await _context.SaveChangesAsync();
         
+        return tarefa;
+    }
+    
+    public async Task<IEnumerable<Tarefa>> BuscarTarefas()
+    {
+        var tarefa = await _context.Tarefas.ToListAsync();
         return tarefa;
     }
 }

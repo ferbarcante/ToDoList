@@ -18,9 +18,10 @@ public static class TarefaRoute
             });
         
         route.MapGet("", 
-            async (TarefaContext context) =>
+            async (TarefaService service) =>
             {
-                
+                var buscarTarefas = await service.BuscarTarefas();
+                return Results.Ok(buscarTarefas);
             });
        
         // route.MapDelete("", () => );
