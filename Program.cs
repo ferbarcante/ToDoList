@@ -22,3 +22,4 @@ app.TarefaRoutes();
 
 app.UseHttpsRedirection();
 app.Run();
+ 
