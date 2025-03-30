@@ -35,5 +35,16 @@ public static class TarefaRoute
                 
                 return Results.Ok(atualizarTarefa);
             });
+
+        route.MapDelete("{id:guid",
+            async (TarefaRequest req, Guid id, TarefaContext context, TarefaService service) =>
+            {
+                var deletarTarefa = await service.ExcluirTarefa(id);
+                
+                if(deletarTarefa == null)
+                    return  Results.NotFound();
+
+                return deletarTarefa;
+            });
     }
 }

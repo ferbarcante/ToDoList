@@ -42,4 +42,14 @@ public class TarefaService
         
         return tarefa;
     }
+
+    public async Task<Tarefa> ExcluirTarefa(Guid id, TarefaRequest req)
+    {
+        var tarefa = await _context.Tarefas.FindAsync(id);
+       
+        tarefa.MudarTitulo(req.titulo);
+        await _context.SaveChangesAsync();
+
+        return tarefa;
+    }
 }
