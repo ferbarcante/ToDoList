@@ -1,5 +1,6 @@
 using ToDoList.Data;
 using ToDoList.Routes;
+using ToDoList.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<TarefaContext>(); //injetando a conexão do bd
+builder.Services.AddScoped<TarefaService>();
 
 var app = builder.Build();
 

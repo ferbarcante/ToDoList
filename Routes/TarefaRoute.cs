@@ -25,7 +25,7 @@ public static class TarefaRoute
                 return Results.Ok(buscarTarefas);
             });
 
-        route.MapPut("{id:guid}",
+        route.MapPut(pattern: "{id:guid}",
             async (TarefaService service, TarefaRequest req, Guid id) =>
             {
                 var atualizarTarefa = await service.AtualizarTarefa(id, req);
@@ -33,7 +33,7 @@ public static class TarefaRoute
                 if (atualizarTarefa == null)
                     return Results.NotFound();
                 
-                return atualizarTarefa;
+                return Results.Ok(atualizarTarefa);
             });
     }
 }
